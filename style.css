@@ -1,0 +1,29 @@
+body{
+    font-family: "Pixel Cowboy" ;
+    background-image: url(./images/background1.jpeg);
+    background-repeat: no-repeat;
+    background-size: contain;
+        
+        
+}
+
+.title{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+        
+}
+
+.titlegame{
+    font-size: 4em;
+    text-shadow: black 15px 20px 9px;
+}
+
+#canvas{
+    
+
+}
+
+

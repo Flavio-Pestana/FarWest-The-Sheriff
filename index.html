@@ -7,25 +7,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css">
     <link rel="shortcut icon" type="imagem/x-icon" href="./images/GunsIcon3.png" />
-    <link rel="stylesheet" href="">
+    <link rel="stylesheet" href="/style.css">
 
     <title>FarWest:The Sheriff</title>
 </head>
 
 <body>
     <header>
-        <h1>FarWest: <br> The Sheriff</h1>
+        <div class ="title">
+            <h1 class="titlegame">FarWest: <br> The Sheriff</h1>
+         </div>
 
+         <div>
+            <nav class="navbar navbar-light ">
+                <div class="container-fluid justify-content-center">
+                    <button id="start-button">Start Game</button>
+                </div>
+              </nav>
+         </div>
     </header>
-    <div id="game-board">
 
-      <canvas id="canvas" class="screenGame" width="1100" height="570"></canvas>
+    <div id="game-board" class="d-flex justify-content-center">
+
+        <canvas id="canvas"  width="1100" height="570"></canvas>
 
     </div>
 
     <footer>
 
     </footer>
+    
+    <script src="./script/main.js"></script>
 
 
 </body>
