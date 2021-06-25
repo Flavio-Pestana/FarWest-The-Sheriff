@@ -5,8 +5,8 @@ window.onload = () => {
     });
 
     function startGame() {
-      background.draw();
-      aim.draw();
+        background.draw();
+        aim.draw();
 
     }
 
@@ -19,9 +19,9 @@ window.onload = () => {
             this.posY = 0;
 
             const img = new Image();
-              img.src = source;
-              img.onload = () => {
-              this.img = img;
+            img.src = source;
+            img.onload = () => {
+                this.img = img;
             }
         }
 
@@ -40,51 +40,13 @@ window.onload = () => {
 
 // movimento mouse
 
-/*class Aim {
-    constructor(source) {
-        this.posX = 0;
-        this.posY = 0;
-
-        const img = new Image();
-          img.src = source;
-          img.onload = () => {
-          this.img = img;
-        }
-    }
-
-    draw() {
-        ctx.drawImage(
-            this.img,
-            this.posX,
-            this.posY,
-            canvas.width,
-            canvas.height
-        );
-    }
-}
-const aim = new Aim('./images/Aim/aimtest.png');
-};
-
-
-/*const mira = new Image();
-  mira.onload = ()
-  mira.src = "./images/Aim/aim.png"
-  mira.addEventListener('load', function(){
-      loop();
-  }, false)
-
 let mouse = {}
-    cnv.addEventListener ('mousemove', function(event){
-        mouse.x = event.clientX - cnv.offsetLeft;
-        mouse.y = event.clientY - cnv.offsetTop;
-    })
+cnv.addEventListener('mousemove', function (event) {
+    mouse.x = event.clientX - cnv.offsetLeft;
+    mouse.y = event.clientY - cnv.offsetTop;
+});
 
-
-function update(){
-
-}
-
-function render(){
+function render() {
     ctx.clearReact(0, 0, canvas.width, canvas.height);
     ctx.save();
     draw();
@@ -93,7 +55,17 @@ function loop() {
     requestAnimationFrame(loop, cnv);
     update();
     render();
-    
-    
 }
+
+/*const mira = new Image();
+  mira.onload = ()
+  mira.src = "./images/Aim/aim.png"
+  mira.addEventListener('load', function(){
+      loop();
+  }, false)
+
+function update(){
+
+}
+
 */

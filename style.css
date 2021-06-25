@@ -27,7 +27,8 @@ body{
 }
 
 #game-board{
-    cursor:crosshair;
+   /* cursor:crosshair;*/
+   cursor:url('./images/Aim/aimtest.gif'), default;
 }
 
 
