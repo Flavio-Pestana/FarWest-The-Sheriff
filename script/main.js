@@ -36,11 +36,11 @@ window.onload = () => {
         }
     }
     const background = new Background('./images/gameBackground.jpg');
-//};
+};
 
 // movimento mouse
 
-class Aim {
+/*class Aim {
     constructor(source) {
         this.posX = 0;
         this.posY = 0;
@@ -95,8 +95,5 @@ function loop() {
     render();
     
     
-}*/
-
-
-
-
+}
+*/

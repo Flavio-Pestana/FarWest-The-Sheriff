@@ -26,9 +26,8 @@ body{
     text-shadow: black 15px 20px 9px;
 }
 
-#canvas{
-    
-
+#game-board{
+    cursor:crosshair;
 }
 
 
