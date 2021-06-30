@@ -7,11 +7,11 @@ body{
     font-family: 'Pixel Cowboy';
     background-image: url("./images/background1.jpeg");
     background-repeat: no-repeat;
-    background-size: contain;
-    
-        
+    background-size: cover;      
         
 }
+
+
 
 .title{
     display: flex;

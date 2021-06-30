@@ -36,6 +36,9 @@ window.onload = () => {
       frame += 1;
       clearCanvas();
       background.draw();
+      ctx.font = '40px Pixel Cowboy';
+      ctx.fillStyle = 'white';
+      ctx.fillText(`Kills : ${score}`, 30, 200);
       updateEnemies();
       gameWin();
       animationId = requestAnimationFrame(updateCanvas);
