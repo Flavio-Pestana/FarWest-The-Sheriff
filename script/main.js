@@ -4,8 +4,8 @@ window.onload = () => {
     
     let mainSound = new Audio();
     mainSound.src = './sounds/TitleScreen.mp3';
-    mainSound.volume = 1;
-    mainSound.loop = true;
+    mainSound.volume = 0.2;
+    // mainSound.loop = true;
     //mainSound.play();
     
     let winSound = new Audio();
@@ -16,34 +16,36 @@ window.onload = () => {
     lostSound.src = './sounds/GameOver.mp3'
 
     let sheriffShot = new Audio();
-    sheriffShot.src = './sounds/SheriffShot_1.mp3'
-
-
-
+    sheriffShot.src = './sounds/SheriffShot_1.mp3' 
+    sheriffShot.volume = 0.5;   
+        
+    const canvas = document.getElementById("canvas");
+    const ctx = canvas.getContext("2d");
+    let frame = 0; //para determinar o tempo de criaçao dos inimigos
+    let inimigos = []; //guarda os inimigos criados
+    let score = 0; 
 
     function startGame() {
-        //mainSound.pause();
-        
-        background.draw();
-        //inimigos[0].draw();
-        updateEnemies().draw();
-        
+      mainSound.play();        
+      background.draw();
+      updateCanvas();
     }
-    let frame = 0;
+
 
     function updateCanvas(){
-        frame += 1;
-        clearCanvas();
-        background.draw();
-        animationId = requestAnimationFrame(updateCanvas);
+      frame += 1;
+      clearCanvas();
+      background.draw();
+      updateEnemies();
+      gameWin();
+      animationId = requestAnimationFrame(updateCanvas);
     }
 
     function clearCanvas(){
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
     }
 
-    const canvas = document.getElementById("canvas");
-    const ctx = canvas.getContext("2d");
+    
 
     class Background {
         constructor(source) {
@@ -75,15 +77,15 @@ window.onload = () => {
             this.posY = y;
             this.width = width;
             this.height = height;
+
             const img = new Image();
-            img.src = imgsrc;
-            img.onload = () => {
-                this.img = img
-               
-            } 
+              img.src = imgsrc;
+              img.onload = () => {
+                this.img = img 
+                this.draw();              
+            }            
         }
 
-        
         draw() {
             ctx.drawImage(
                 this.img,
@@ -91,10 +93,8 @@ window.onload = () => {
                 this.posY,
                 this.width,
                 this.height,
-
             )
         };
-
     }
 
     const enemieposition = [
@@ -140,57 +140,60 @@ window.onload = () => {
     };
     
 
-    function createEnemies(x){
-        for(let i = 0; i < x; i++){
+    function createEnemies(){
+        
             let sprite = pickPosition(enemiesprite);
+            console.log(sprite);
             let posScreen = pickPosition(enemieposition);
             let enemy = new Enemie(posScreen.x, posScreen.y, posScreen.width, posScreen.height,sprite)
-            inimigos.push(enemy);
-                    
-        }
-        
-    }
+            console.log(enemy);
+            inimigos.push(enemy);                   
+                
+    } 
     
-    let inimigos = [];
-
-    //createEnemies(15);
-
-    function updateEnemies (){
-        if (frames % 80 === 0){
-            createEnemies(15);
+    function updateEnemies (){        
+        inimigos.forEach(inimigo => {
+            inimigo.draw();            
+        });
+        if (frame % 90 === 0){
+            createEnemies();            
         }
-    }
-
-
-    //console.log(inimigos);
- 
+    }     
+    
     //check shoot
-
-
     function getCursorPosition(canvas, event) {
         const rect = canvas.getBoundingClientRect()
         const x = event.clientX - rect.left
         const y = event.clientY - rect.top
+        
         for (let i = 0; i < inimigos.length; i ++ ){
-           // console.log(i); 
+           
         if (x >= inimigos[i].posX && x <= (inimigos[i].width + inimigos[i].posX) && y >= inimigos[i].posY && y <= (inimigos[i].height + inimigos[i].posY) === true) {
-          // console.log("acertou", i); 
+          inimigos.splice(i, 1); 
+          score +=1;
+          console.log(score);  
         }
-        }
+        }        
+    }
 
-        //console.log("x: " + x + " y: " + y)
+    function gameWin(){
+        if( score === 20){
+          winSound.play();           
+          ctx.font = '50px Pixel Cowboy';
+          ctx.fillStyle = 'white';
+          ctx.fillText('Great job, Sheriff! ', 300, 300);
+          cancelAnimationFrame();                      
+        }
+    }
+
+    function gameOver(){
+
     }
        
-        // remove imagem no canvas?
-    /*image.on("click",function(){
-        this.remove();  // or this.destroy();
-        layer.draw();
-    });*/
-
-    canvas.addEventListener('mousedown', function (e) {
+       
+    canvas.addEventListener('click', function (e) {
          sheriffShot.play();         
-        getCursorPosition(canvas, e)
-        
+        getCursorPosition(canvas, e);        
     })
 
         document.getElementById('start-button').addEventListener("click", () => {

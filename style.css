@@ -1,5 +1,5 @@
 @font-face {
-    font-family: Pixel Cowboy;
+    font-family: Pixel;
     src: url("./font/PixelCowboy.otf");
 }
 
@@ -20,6 +20,16 @@ body{
     align-items: center;
     color: white;
         
+}
+
+.how{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 2em;
+      
 }
 
 .titlegame{
