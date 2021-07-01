@@ -1,54 +1,67 @@
 
 
 window.onload = () => {
-    
+
     let mainSound = new Audio();
     mainSound.src = './sounds/TitleScreen.mp3';
-    mainSound.volume = 0.2;
-    // mainSound.loop = true;
-    //mainSound.play();
-    
+    mainSound.volume = 0.1;
+    mainSound.loop = true;
+    mainSound.play();
+
+    let gameSound = new Audio();
+    gameSound.src = './sounds/MusicGame.mp3'
+    gameSound.volume = 0.1;
+    gameSound.loop = true;
+
     let winSound = new Audio();
     winSound.src = './sounds/End.mp3';
-    winSound.volume = 1  ;
+    winSound.volume = 0.1;
 
     let lostSound = new Audio();
     lostSound.src = './sounds/GameOver.mp3'
 
     let sheriffShot = new Audio();
-    sheriffShot.src = './sounds/SheriffShot_1.mp3' 
-    sheriffShot.volume = 0.5;   
-        
+    sheriffShot.src = './sounds/SheriffShot_1.mp3'
+    sheriffShot.volume = 0.2;
+
+    let enemySound = new Audio();
+    enemySound.src = './sounds/EnemyShooting_1.mp3'
+
+
     const canvas = document.getElementById("canvas");
     const ctx = canvas.getContext("2d");
+    let animationId = null;
     let frame = 0; //para determinar o tempo de criaçao dos inimigos
     let inimigos = []; //guarda os inimigos criados
-    let score = 0; 
+    let score = 0;
+    let enemyTimer = [];
+    let enemyshot = false;
+
 
     function startGame() {
-      mainSound.play();        
-      background.draw();
-      updateCanvas();
+        mainSound.pause();
+        gameSound.play();        
+        background.draw();
+        updateCanvas();
     }
 
 
-    function updateCanvas(){
-      frame += 1;
-      clearCanvas();
-      background.draw();
-      ctx.font = '40px Pixel Cowboy';
-      ctx.fillStyle = 'white';
-      ctx.fillText(`Kills : ${score}`, 30, 200);
-      updateEnemies();
-      gameWin();
-      animationId = requestAnimationFrame(updateCanvas);
+    function updateCanvas() {
+        frame += 1;
+        clearCanvas();
+        background.draw();
+        ctx.font = '40px Pixel Cowboy';
+        ctx.fillStyle = 'white';
+        ctx.fillText(`Kills : ${score}`, 30, 200);
+        updateEnemies();
+        checkGameEnd();
     }
 
-    function clearCanvas(){
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
+    function clearCanvas() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
     }
 
-    
+
 
     class Background {
         constructor(source) {
@@ -75,28 +88,46 @@ window.onload = () => {
     const background = new Background('./images/gameBackground.png', 0, 0, 1100, 570);
 
     class Enemie {
-        constructor(x, y, width, height, imgsrc) {
+        constructor(x, y, width, height, imgsrc, imgshoot) {
             this.posX = x;
             this.posY = y;
             this.width = width;
             this.height = height;
 
             const img = new Image();
-              img.src = imgsrc;
-              img.onload = () => {
-                this.img = img 
-                this.draw();              
-            }            
+            img.src = imgsrc;
+            img.onload = () => {
+                this.img = img
+                //this.draw();              
+            }
+
+            const imgshooting = new Image();
+            imgshooting.src = imgshoot;
+            imgshooting.onload = () => {
+                this.imgshooting = imgshooting
+                //this.draw();              
+            }
         }
 
         draw() {
-            ctx.drawImage(
-                this.img,
-                this.posX,
-                this.posY,
-                this.width,
-                this.height,
-            )
+            if (enemyshot) {
+                ctx.drawImage(
+                    this.imgshooting,
+                    this.posX,
+                    this.posY,
+                    this.width,
+                    this.height,
+                )
+            } else {
+                console.log(this.img.src);
+                ctx.drawImage(
+                    this.img,
+                    this.posX,
+                    this.posY,
+                    this.width,
+                    this.height,
+                )
+            }
         };
     }
 
@@ -134,72 +165,109 @@ window.onload = () => {
     ];
 
     const enemiesprite = [
-        './images/Sprites/Enemies/enemie1.png',
-        './images/Sprites/Enemies/enemie2.png',
-        './images/Sprites/Enemies/enemie3.png' ];
-   
-    function pickPosition(array){
+        {
+            normal: './images/Sprites/Enemies/enemie1.png',
+            shooting: './images/Sprites/Enemies/shooting/shooting1.png'
+        },
+        {
+            normal: './images/Sprites/Enemies/enemie2.png',
+            shooting: './images/Sprites/Enemies/shooting/shooting2.png'
+        },
+
+        {
+            normal: './images/Sprites/Enemies/enemie3.png',
+            shooting: './images/Sprites/Enemies/shooting/shooting3.png'
+        }
+    ];
+
+
+
+    function pickPosition(array) {
         return array[Math.floor(Math.random() * array.length)];
     };
-    
 
-    function createEnemies(){
-        
-            let sprite = pickPosition(enemiesprite);
-            console.log(sprite);
-            let posScreen = pickPosition(enemieposition);
-            let enemy = new Enemie(posScreen.x, posScreen.y, posScreen.width, posScreen.height,sprite)
-            console.log(enemy);
-            inimigos.push(enemy);                   
-                
-    } 
-    
-    function updateEnemies (){        
+
+    function createEnemies() {
+
+        let sprite = pickPosition(enemiesprite);
+        //console.log(sprite);
+        let posScreen = pickPosition(enemieposition);
+        let enemy = new Enemie(posScreen.x, posScreen.y, posScreen.width, posScreen.height, sprite.normal, sprite.shooting);
+        //console.log(enemy);
+        inimigos.push(enemy);
+        let timer = setTimeout(() => {
+            enemySound.play();
+            enemyshot = true
+        }, 2000);
+        enemyTimer.push(timer);
+
+    }
+
+    function updateEnemies() {
         inimigos.forEach(inimigo => {
-            inimigo.draw();            
+            inimigo.draw();
         });
-        if (frame % 90 === 0){
-            createEnemies();            
+        if (frame % 90 === 0) {
+            createEnemies();
         }
-    }     
-    
+    }
+
     //check shoot
     function getCursorPosition(canvas, event) {
         const rect = canvas.getBoundingClientRect()
         const x = event.clientX - rect.left
         const y = event.clientY - rect.top
-        
-        for (let i = 0; i < inimigos.length; i ++ ){
-           
-        if (x >= inimigos[i].posX && x <= (inimigos[i].width + inimigos[i].posX) && y >= inimigos[i].posY && y <= (inimigos[i].height + inimigos[i].posY) === true) {
-          inimigos.splice(i, 1); 
-          score +=1;
-          console.log(score);  
-        }
-        }        
-    }
 
-    function gameWin(){
-        if( score === 20){
-          winSound.play();           
-          ctx.font = '50px Pixel Cowboy';
-          ctx.fillStyle = 'white';
-          ctx.fillText('Great job, Sheriff! ', 300, 300);
-          cancelAnimationFrame();                      
+        for (let i = 0; i < inimigos.length; i++) {
+
+            if (x >= inimigos[i].posX && x <= (inimigos[i].width + inimigos[i].posX) && y >= inimigos[i].posY && y <= (inimigos[i].height + inimigos[i].posY) === true) {
+                inimigos.splice(i, 1);
+                score += 1;
+                clearTimeout(enemyTimer[i]);
+                enemyTimer.splice(i, 1);
+                console.log(score);
+            }
         }
     }
 
-    function gameOver(){
+    function checkGameEnd() {
+        if (score >= 20) {
+            cancelAnimationFrame(animationId);
+            gameWin();
+            inimigos = []
+        } else if (enemyshot) {
+            cancelAnimationFrame(animationId);
+            gameOver();
+            inimigos = [];
+        } else {
+            animationId = requestAnimationFrame(updateCanvas);
+        }
+    }
+
+    function gameWin() {
+
+        gameSound.pause();
+        winSound.play();           
+        ctx.font = '50px Pixel Cowboy';
+        ctx.fillStyle = 'white';
+        ctx.fillText('Great job, Sheriff! ', 300, 300);
+        console.log(animationId, 'game win');
+
 
     }
-       
-       
+
+    function gameOver() {
+        console.log('game over');
+
+    }
+
+
     canvas.addEventListener('click', function (e) {
-         sheriffShot.play();         
-        getCursorPosition(canvas, e);        
+        sheriffShot.play();
+        getCursorPosition(canvas, e);
     })
 
-        document.getElementById('start-button').addEventListener("click", () => {
+    document.getElementById('start-button').addEventListener("click", () => {
         startGame();
 
     });

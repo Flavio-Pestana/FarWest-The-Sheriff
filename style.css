@@ -7,7 +7,7 @@ body{
     font-family: 'Pixel Cowboy';
     background-image: url("./images/background1.jpeg");
     background-repeat: no-repeat;
-    background-size: cover;      
+   /* background-size: cover;      */
         
 }
 
@@ -29,8 +29,13 @@ body{
     align-items: center;
     color: white;
     font-size: 2em;
+    background-color: coral;
       
 }
+
+/*.howtoplay{
+    background-color: chocolate;
+}*/
 
 .titlegame{
     font-size: 4em;
