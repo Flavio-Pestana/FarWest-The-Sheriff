@@ -171,17 +171,17 @@ window.onload = () => {
 
     const enemiesprite = [
         {
-            normal: './images/Sprites/Enemies/enemie1.png',
-            shooting: './images/Sprites/Enemies/shooting/shooting1.png'
+            normal: '/images/Sprites/Enemies/enemie1.png',
+            shooting: '/images/Sprites/Enemies/shooting/shooting1.png'
         },
         {
-            normal: './images/Sprites/Enemies/enemie2.png',
-            shooting: './images/Sprites/Enemies/shooting/shooting2.png'
+            normal: '/images/Sprites/Enemies/enemie2.png',
+            shooting: '/images/Sprites/Enemies/shooting/shooting2.png'
         },
 
         {
-            normal: './images/Sprites/Enemies/enemie3.png',
-            shooting: './images/Sprites/Enemies/shooting/shooting3.png'
+            normal: '/images/Sprites/Enemies/enemie3.png',
+            shooting: '/images/Sprites/Enemies/shooting/shooting3.png'
         }
     ];
 
