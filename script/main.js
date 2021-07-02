@@ -17,8 +17,8 @@ window.onload = () => {
     winSound.src = './sounds/End.mp3';
     winSound.volume = 0.1;
 
-    let lostSound = new Audio();
-    lostSound.src = './sounds/GameOver.mp3'
+    let loseSound = new Audio();
+    loseSound.src = './sounds/GameOver.mp3'
 
     let sheriffShot = new Audio();
     sheriffShot.src = './sounds/SheriffShot_1.mp3'
@@ -35,7 +35,7 @@ window.onload = () => {
     let inimigos = []; //guarda os inimigos criados
     let score = 0;
     let enemyTimer = [];
-    let enemyshot = false;
+    let enemyshot = false; //check gameover
 
 
     function startGame() {
@@ -43,6 +43,11 @@ window.onload = () => {
         gameSound.play();        
         background.draw();
         updateCanvas();
+    }
+
+    function resetGame(){
+        document.getElementById('start-button').innerText = 'Restart';
+        
     }
 
 
@@ -251,13 +256,19 @@ window.onload = () => {
         ctx.font = '50px Pixel Cowboy';
         ctx.fillStyle = 'white';
         ctx.fillText('Great job, Sheriff! ', 300, 300);
-        console.log(animationId, 'game win');
+       // console.log(animationId, 'game win');
 
 
     }
 
     function gameOver() {
-        console.log('game over');
+        gameSound.pause();
+        loseSound.play();
+        ctx.font = '50px Pixel Cowboy';
+        ctx.fillStyle = 'white';
+        ctx.fillText('You died', 300, 300);
+
+        //console.log('game over');
 
     }
 
@@ -268,7 +279,8 @@ window.onload = () => {
     })
 
     document.getElementById('start-button').addEventListener("click", () => {
-        startGame();
+       
+        startGame();               
 
     });
 };
