@@ -45,10 +45,10 @@ window.onload = () => {
         updateCanvas();
     }
 
-    function resetGame(){
+    /*function resetGame(){
         document.getElementById('start-button').innerText = 'Restart';
-        
-    }
+        //window.location.reload(true);
+    }*/
 
 
     function updateCanvas() {
@@ -101,17 +101,15 @@ window.onload = () => {
 
             const img = new Image();
             img.src = imgsrc;
-            img.onload = () => {
-                this.img = img
-                //this.draw();              
-            }
+           // img.onload = () => {
+                this.img = img                              
+            //}
 
             const imgshooting = new Image();
             imgshooting.src = imgshoot;
-            imgshooting.onload = () => {
-                this.imgshooting = imgshooting
-                //this.draw();              
-            }
+            //imgshooting.onload = () => {
+                this.imgshooting = imgshooting                              
+            //}
         }
 
         draw() {
@@ -279,8 +277,13 @@ window.onload = () => {
     })
 
     document.getElementById('start-button').addEventListener("click", () => {
-       
-        startGame();               
+        startGame();
+        /*if(start-buttonElement.innerText === "Start Game"){
+            startGame();
+            resetGame();
+        }else{
+            window.location.reload(true);
+        }  */            
 
     });
 };
