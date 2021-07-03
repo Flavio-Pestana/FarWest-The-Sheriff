@@ -3,48 +3,140 @@
     src: url("./font/PixelCowboy.otf");
 }
 
-body{
-    font-family: 'Pixel Cowboy';
-    background-image: url("./images/background1.jpeg");
-    background-repeat: no-repeat;
-    position: unset;
+*{    
+    margin: 0;
+    padding: 0;
+    font: white;
+  }
+  
+  #title{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 130px;
+    margin-left: 35%;
+  }
+
     
-   /* background-size: cover;      */
-        
-}
-
-
-
-.title{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  header {
+    font-family: 'Pixel Cowboy';
     color: white;
-        
-}
-
-.how{
+    position: fixed;
+    background-image: linear-gradient( rgb(116, 12, 12)  rgb(48, 5, 5));
+    height: 50px;
+    width: 100%;
+    margin-top: 0;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
-    color: white;
-    font-size: 2em;
-    background-color: coral;
-      
-}
-
-
-
-.titlegame{
+  }
+  h1{
     font-size: 4em;
     text-shadow: black 15px 20px 9px;
-}
+    padding-left: 20px;
+  }
+  /*#start-button {
+    font-family: 'Pixel Cowboy';
+    display: flex;
+    margin-top: 130px;
+    margin-right: 100px;    
+  }*/
+
+  #game{
+    background-image: url('./images/background1.jpeg');
+    padding-top: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+  }
+  
+  #display {
+    margin: 5px 40px;
+  }
+  
+  ul{
+    
+    margin-left: 40px;
+    display: flex;
+    justify-content: space-between
+  }
+  
+  li {
+    font-size: 19px;
+    margin: 10px;
+    list-style-type: none;
+  }
+  
+  a {
+    text-decoration: none;
+    color: white;
+  }
+  a:hover {
+    text-decoration: none;
+    
+    font-size: 20px;
+  }
+  
+  #info{
+    font-family: 'Pixel Cowboy';
+    font-size: 1.2em;
+    background-image: linear-gradient(red, orange);
+    display: flex;
+    height: 600px;;
+    justify-content: space-around;
+    align-items: center;
+    color: white;
+    padding-top: 150px;
+  }
+  
+  #info div{    
+    
+    margin: 250px 0px 50px 0px;
+    padding: 20px;
+    width: 350px;
+    height: 450px;
+  }
+  #info div h2{
+    margin-bottom: 20px;
+    
+    color: white;
+  }
+  #creator{
+    font-family: arial;
+    background-image: linear-gradient( orange, rgb(223, 211, 189));
+    display: flex;
+    height: 450px;;
+    justify-content: space-around;
+    align-items: flex-start;
+    color: black;    
+  }
+  span {
+      color: black;
+  }
+  
+  #creator div{
+    font-family: arial;
+    margin: 50px 0px 50px 0px;
+    padding: 20px;
+    width: 300px;
+    height: 350px;
+  }
+  #creator div h2{
+    margin-bottom: 20px;
+    font-family: arial;
+    color: white;
+  }
+  
 
 #game-board{
    cursor:  Crosshair ;
    /*cursor:url('./images/Aim/aimtest.gif'), default;*/
+}
+
+#titlegame{
+    cursor: pointer;
 }
 
 

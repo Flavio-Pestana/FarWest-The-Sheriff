@@ -269,7 +269,7 @@ window.onload = () => {
         getCursorPosition(canvas, e);
     })
 
-    document.getElementById('start-button').addEventListener("click", () => {
+    document.getElementById('titlegame').addEventListener("click", () => {
         startGame();
         
     });

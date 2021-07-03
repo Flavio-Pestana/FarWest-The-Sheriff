@@ -14,52 +14,57 @@
 
 <body>
     <header>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
-                aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Alterna navegação">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse justify-content-center" id="navbarNavDropdown">
-                <ul class="navbar-nav mr-auto">
-                    
-                    <li class="nav-item">
-                        <a class="nav-link" href="#howtoplay">How to Play</a>
-                    </li>
-                    
-                    
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Info</a>
-                    </li>               
-                </ul>
-            </div>
-        </nav>
-        <div class ="title">
-            <h1 class="titlegame">FarWest: <br> The Sheriff</h1>
-         </div>
+        <div id="title">
 
-         <div>
-            <nav class="navbar navbar-light ">
-                <div class="container-fluid justify-content-center">
-                    <button id="start-button" href="canvas" >Start Game</button>
-                </div>
-              </nav>
-         </div>
-
-         <div id="game-board" class="d-flex justify-content-center">
-
-        <canvas id="canvas"  width="1100" height="570"></canvas>
-
-    </div>
-
-         <div id="howtoplay" class="howtoplay text-center p-4">
-             <div class="how p-3 mb-2"> How To Play: <br>
-                Use your mouse cursor to aim; <br>
-                Click to shoot the enemies. <br>
-                Shoot 20 bandits to win!</div>
-         </div>
+            <h1 id="titlegame">FarWest: <br> The Sheriff</h1>
+        </div>
+        <ul>
+            <li> <a href="#game">Home</a> </li>
+            <li><a href="#info">Info</a></li>
+            <li><a href="#creator">Creator</a></li>
+        </ul>
     </header>
 
+    <section id="game">
+
+    
+
+     <div id="game-board" class="d-flex justify-content-center">
+
+    <canvas id="canvas"  width="1100" height="570"></canvas>
+
+</div>
+
+        
+      
+        
+
+    </section>
+
+    <section id="info">
+       
+        <div>
+            <h2>How to Play</h2>
+            <p>
+                Use your mouse cursor to aim; <br>
+                Click to shoot the enemies. <br>
+                Shoot 20 bandits to win!
+            </p>
+        </div>
+
+        
+    </section>
+    <section id="creator">
+
+        <div>
+            <h2> <span> Created by: </span><br> Flavio Pestana</h2>
+            <p> A special thanks to Samuel Motta Pestana <a href="https://ghost-sam.newgrounds.com/" target="_blank"> @GHOST-sam</a> for
+                creating all the songs, backgrounds and sprites! </p>
+        </div>
+        
+        
+    
+    </section>
     
         
     <script src="./script/main.js"></script>
