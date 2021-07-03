@@ -36,12 +36,7 @@
     text-shadow: black 15px 20px 9px;
     padding-left: 20px;
   }
-  /*#start-button {
-    font-family: 'Pixel Cowboy';
-    display: flex;
-    margin-top: 130px;
-    margin-right: 100px;    
-  }*/
+  
 
   #game{
     background-image: url('./images/background1.jpeg');
@@ -135,8 +130,6 @@
    /*cursor:url('./images/Aim/aimtest.gif'), default;*/
 }
 
-#titlegame{
-    cursor: pointer;
-}
+
 
 

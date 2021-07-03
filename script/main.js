@@ -2,11 +2,11 @@
 
 window.onload = () => {
 
-    let mainSound = new Audio();
+    /*let mainSound = new Audio();
     mainSound.src = './sounds/TitleScreen.mp3';
     mainSound.volume = 0.1;
     mainSound.loop = true;
-    mainSound.play();
+    //mainSound.play();*/
 
     let gameSound = new Audio();
     gameSound.src = './sounds/MusicGame.mp3'
@@ -39,7 +39,7 @@ window.onload = () => {
 
 
     function startGame() {
-        mainSound.pause();
+        //mainSound.pause();
         gameSound.play();        
         background.draw();
         updateCanvas();
@@ -244,22 +244,31 @@ window.onload = () => {
 
         gameSound.pause();
         winSound.play();           
-        ctx.font = '50px Pixel Cowboy';
+        ctx.font = '70px Pixel Cowboy';
         ctx.fillStyle = 'white';
         ctx.fillText('Great job, Sheriff! ', 300, 300);
-       
-
-
     }
 
     function gameOver() {
         gameSound.pause();
         loseSound.play();
-        ctx.font = '50px Pixel Cowboy';
-        ctx.fillStyle = 'white';
-        ctx.fillText('You died', 300, 300);
+        ctx.font = '70px Pixel Cowboy';
+        ctx.fillStyle = 'red';
+        ctx.fillText('You died', 400, 300);      
 
-        
+    }
+
+    function restart(){
+        inimigos = [];
+        score = 0;
+        frame = 0;
+        animationId = null;
+        enemyshot = false;
+        enemyTimer = [];
+        loseSound.pause();
+        winSound.pause();
+        clearCanvas();
+        startGame();
 
     }
 
@@ -269,8 +278,13 @@ window.onload = () => {
         getCursorPosition(canvas, e);
     })
 
-    document.getElementById('titlegame').addEventListener("click", () => {
+    document.getElementById('start-button').addEventListener("click", () => {
         startGame();
+        
+    });
+
+    document.getElementById('restart-button').addEventListener("click", () => {
+        restart();
         
     });
 };
