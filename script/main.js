@@ -45,12 +45,7 @@ window.onload = () => {
         updateCanvas();
     }
 
-    /*function resetGame(){
-        document.getElementById('start-button').innerText = 'Restart';
-        //window.location.reload(true);
-    }*/
-
-
+    
     function updateCanvas() {
         frame += 1;
         clearCanvas();
@@ -99,17 +94,15 @@ window.onload = () => {
             this.width = width;
             this.height = height;
 
-            const img = new Image();
-            img.src = imgsrc;
-           // img.onload = () => {
-                this.img = img                              
-            //}
+            this.img = new Image();
+            this.img.src = imgsrc;           
+                                       
+            
 
-            const imgshooting = new Image();
-            imgshooting.src = imgshoot;
-            //imgshooting.onload = () => {
-                this.imgshooting = imgshooting                              
-            //}
+            this.imgshooting = new Image();
+            this.imgshooting.src = imgshoot;            
+                                        
+            
         }
 
         draw() {
@@ -122,7 +115,7 @@ window.onload = () => {
                     this.height,
                 )
             } else {
-                console.log(this.img.src);
+                
                 ctx.drawImage(
                     this.img,
                     this.posX,
@@ -169,17 +162,17 @@ window.onload = () => {
 
     const enemiesprite = [
         {
-            normal: '/images/Sprites/Enemies/enemie1.png',
-            shooting: '/images/Sprites/Enemies/shooting/shooting1.png'
+            normal: './images/Sprites/Enemies/enemie1.png',
+            shooting: './images/Sprites/Enemies/shooting/shooting1.png'
         },
         {
-            normal: '/images/Sprites/Enemies/enemie2.png',
-            shooting: '/images/Sprites/Enemies/shooting/shooting2.png'
+            normal: './images/Sprites/Enemies/enemie2.png',
+            shooting: './images/Sprites/Enemies/shooting/shooting2.png'
         },
 
         {
-            normal: '/images/Sprites/Enemies/enemie3.png',
-            shooting: '/images/Sprites/Enemies/shooting/shooting3.png'
+            normal: './images/Sprites/Enemies/enemie3.png',
+            shooting: './images/Sprites/Enemies/shooting/shooting3.png'
         }
     ];
 
@@ -193,10 +186,10 @@ window.onload = () => {
     function createEnemies() {
 
         let sprite = pickPosition(enemiesprite);
-        //console.log(sprite);
+        
         let posScreen = pickPosition(enemieposition);
         let enemy = new Enemie(posScreen.x, posScreen.y, posScreen.width, posScreen.height, sprite.normal, sprite.shooting);
-        //console.log(enemy);
+        
         inimigos.push(enemy);
         let timer = setTimeout(() => {
             enemySound.play();
@@ -254,7 +247,7 @@ window.onload = () => {
         ctx.font = '50px Pixel Cowboy';
         ctx.fillStyle = 'white';
         ctx.fillText('Great job, Sheriff! ', 300, 300);
-       // console.log(animationId, 'game win');
+       
 
 
     }
@@ -266,7 +259,7 @@ window.onload = () => {
         ctx.fillStyle = 'white';
         ctx.fillText('You died', 300, 300);
 
-        //console.log('game over');
+        
 
     }
 
@@ -278,13 +271,7 @@ window.onload = () => {
 
     document.getElementById('start-button').addEventListener("click", () => {
         startGame();
-        /*if(start-buttonElement.innerText === "Start Game"){
-            startGame();
-            resetGame();
-        }else{
-            window.location.reload(true);
-        }  */            
-
+        
     });
 };
 
