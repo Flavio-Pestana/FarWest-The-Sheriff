@@ -39,7 +39,7 @@ window.onload = () => {
 
 
     function startGame() {
-        //mainSound.pause();
+        
         gameSound.play();        
         background.draw();
         updateCanvas();
@@ -52,7 +52,7 @@ window.onload = () => {
         background.draw();
         ctx.font = '40px Pixel Cowboy';
         ctx.fillStyle = 'white';
-        ctx.fillText(`Kills : ${score}`, 30, 200);
+        ctx.fillText(`Kills : ${score}`, 30, 250);
         updateEnemies();
         checkGameEnd();
     }
@@ -85,7 +85,7 @@ window.onload = () => {
             );
         }
     }
-    const background = new Background('./images/gameBackground.png', 0, 0, 1100, 570);
+    const background = new Background('./images/gameBackground.jpg', 0, 0, 1100, 570);
 
     class Enemie {
         constructor(x, y, width, height, imgsrc, imgshoot) {
